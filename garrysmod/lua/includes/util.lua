@@ -1,4 +1,3 @@
-
 --
 -- Seed the rand!
 --
@@ -72,6 +71,30 @@ function PrintTable ( t, indent, done )
 
 end
 
+local Print = print
+
+function print( ... )
+
+	local args = {...}
+	local pargs = { }
+	
+	for k, v in pairs( args ) do
+		
+		if ( type( v ) == "table" ) then
+			
+			pargs[k] = table.ToString( v, debug.magic, true )
+		
+		else
+		
+			pargs[k] = v
+		
+		end
+		
+	end
+	
+	Print( unpack( pargs ) )
+	
+end
 
 --[[---------------------------------------------------------
    Returns a random vector
